@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      relativeToChangelogFile: true
+      file: 2020-11-23--01-initial-schema.yaml
+  - include:
+      relativeToChangelogFile: true
+      file: 2020-11-23--02-insert-root-category.yaml

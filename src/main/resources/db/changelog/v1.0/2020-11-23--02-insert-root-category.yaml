@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert root category
+      author: maximinho
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: 0
+              - column:
+                  name: name
+                  value: ROOT

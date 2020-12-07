@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: create category table
+      author: maximinho
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parent_id
+                  type: bigint
+                  constraints:
+                    referencedTableName: category
+                    referencedColumnNames: id
+                    foreignKeyName: category_parent_id_fkey
+
+  - changeSet:
+      id: create category parent_id index
+      author: maximinho
+      changes:
+        - createIndex:
+            tableName: category
+            columns:
+              name: parent_id
+
+  - changeSet:
+      id: create product table
+      author: maximinho
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    referencedTableName: category
+                    referencedColumnNames: id
+                    foreignKeyName: product_category_id_fkey
+
+  - changeSet:
+      id: create product category_id index
+      author: maximinho
+      changes:
+        - createIndex:
+            tableName: product
+            columns:
+              name: category_id
+
+  - changeSet:
+      id: create category id sequence
+      author: maximinho
+      changes:
+        - createSequence:
+            startValue: 1
+            incrementBy: 5
+            sequenceName: category_id_seq
+
+  - changeSet:
+      id: create product id sequence
+      author: maximinho
+      changes:
+        - createSequence:
+            startValue: 1
+            incrementBy: 5
+            sequenceName: product_id_seq
